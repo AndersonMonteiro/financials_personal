@@ -1,0 +1,38 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+ptvsd = "*"
+pylint-django = "*"
+pylint = "*"
+autopep8 = "*"
+pep8 = "*"
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+django-configurations = "*"
+python-dotenv = "*"
+djangorestframework = "*"
+requests = "*"
+django-filter = "*"
+django-simple-history = "*"
+graphene-django = ">=2.0"
+bovespa = "*"
+fundamentos = "*"
+pandas-datareader = "*"
+yfinance = "*"
+matplotlib = "*"
+quandl = "*"
+bs4 = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+gspread = "*"
+oauth2client = "*"
+gunicorn = "*"
+
+[requires]
+python_version = "3.9"

@@ -1,0 +1,41 @@
+from django.urls import path
+from api.views import (
+    auxiliar_views, cartao_views, comentario_views, conta_views,
+    endereco_views, movimentacao_views, perfil_views, meta_financeira_views,
+    orcamento_views, grupo_acesso_views, participante_grupo_acesso_views
+)
+
+urlpatterns = [
+    path('moedas', auxiliar_views.MoedaList.as_view()),
+    path('tipos-movimentacao', auxiliar_views.TipoMovimentacaoList.as_view()),
+    path('formas-pagamento', auxiliar_views.FormaPagamentoList.as_view()),
+    path('status-movimentacao', auxiliar_views.StatusMovimentacaoList.as_view()),
+    path('categorias', auxiliar_views.CategoriaList.as_view()),
+    path('tipos-conta', auxiliar_views.TipoContaList.as_view()),
+    path('instituicoes-financeiras', auxiliar_views.InstituicaoFinanceiraList.as_view()),
+    path('bandeiras', auxiliar_views.BandeiraList.as_view()),
+    path('prioridades-movimentacao', auxiliar_views.PrioridadeMovimentacaoList.as_view()),
+    path('enderecos', endereco_views.EnderecoCreateListView.as_view()),
+    path('enderecos/<int:pk>', endereco_views.EnderecoRetrievelUpdateView.as_view()),
+    path('contas', conta_views.ContaCreateList.as_view()),
+    path('contas/<int:pk>', conta_views.ContaUpdateRetrieve.as_view()),
+    path('movimentacoes', movimentacao_views.MovimentacaoCreateList.as_view()),
+    path('movimentacoes/<str:pk>', movimentacao_views.MovimentacaoUpdateRetrieve.as_view()),
+    path('perfis', perfil_views.PerfilCreateListView.as_view()),
+    path('perfis/<int:pk>', perfil_views.PerfilRetrieveUpdateView.as_view()),
+    path('comentarios', comentario_views.ComentarioCreateList.as_view()),
+    path('comentarios/<int:pk>', comentario_views.ComentarioUpdateRetrieve.as_view()),
+    path('cartoes', cartao_views.CartaoCreateList.as_view()),
+    path('cartoes/<int:pk>', cartao_views.CartaoUpdateRetrieve.as_view()),
+    path('metas', meta_financeira_views.MetaFinanceiraCreateListView.as_view()),
+    path('metas/<int:pk>', meta_financeira_views.MetaFinanceiraUpdateView.as_view()),
+    path('orcamentos', orcamento_views.OrcamentoCreateListView.as_view()),
+    path('orcamentos/<int:pk>', orcamento_views.OrcamentoUpdateView.as_view()),
+    path('sincroniza-planilha', movimentacao_views.SyncMovimentacaoSheet.as_view()),
+    path('movimentacoes-sheet', movimentacao_views.MovimentacaoSheetList.as_view()),
+    path('tipos-grupos-acesso', auxiliar_views.TipoGrupoAcessoList.as_view()),
+    path('grupos-acesso', grupo_acesso_views.GrupoAcessoCreateList.as_view()),
+    path('grupos-acesso/<int:pk>', grupo_acesso_views.GrupoAcessoUpdate.as_view()),
+    path('participantes-grupo-acesso', participante_grupo_acesso_views.ParticipanteGrupoAcessoCreateList.as_view()),
+    path('participantes-grupo-acesso/<int:pk>', participante_grupo_acesso_views.ParticipanteGrupoAcessoUpdate.as_view()),
+]

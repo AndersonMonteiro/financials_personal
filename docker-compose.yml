@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+        POSTGRES_USER: ${DEV_DB_FIN_USER}
+        POSTGRES_PASSWORD: ${DEV_DB_FIN_PASS}
+        POSTGRES_DB: ${DEV_DB_FIN_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/db
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
+    driver_opts:
+        com.docker.network.enable_ipv6: "true"
