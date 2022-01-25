@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Perfil(models.Model):
+    id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=50, null=False, blank=True)
     sobrenome = models.CharField(max_length=50, null=False, blank=True)
     data_nascimento = models.DateField(null=False, blank=True)
@@ -20,12 +21,14 @@ class Perfil(models.Model):
         ordering = ('data_cadastro',)
 
 class TipoGrupoAcesso(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=30, unique=True, null=False)    
 
     class Meta:
         db_table = 'tipo_grupo_acesso'
 
 class GrupoAcesso(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=30, unique=True, null=False)
     tipo_grupo_acesso = models.ForeignKey(TipoGrupoAcesso, on_delete=models.PROTECT)
     perfil_responsavel = models.ForeignKey(Perfil, on_delete=models.PROTECT, null=False, related_name='responsavel_grupo_acesso')
@@ -37,6 +40,7 @@ class GrupoAcesso(models.Model):
         ordering = ('data_cadastro', )
 
 class ParticipanteGrupoAcesso(models.Model):
+    id = models.AutoField(primary_key=True)
     perfil_participante = models.ForeignKey(Perfil, on_delete=models.PROTECT, null=True, related_name='responsavel_participante')
     grupo_acesso = models.ForeignKey(GrupoAcesso, on_delete=models.PROTECT)
     edicao_ativo = models.BooleanField(default=True)
@@ -48,6 +52,7 @@ class ParticipanteGrupoAcesso(models.Model):
         ordering = ('data_cadastro', )
 
 class Moeda(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=20, unique=True, null=False)
     simbolo = models.CharField(max_length=5, unique=True, null=True)
 
@@ -56,6 +61,7 @@ class Moeda(models.Model):
         ordering = ('descricao', )
 
 class TipoMovimentacao(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -63,6 +69,7 @@ class TipoMovimentacao(models.Model):
         ordering = ('descricao', )
 
 class FormaPagamento(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -70,6 +77,7 @@ class FormaPagamento(models.Model):
         ordering = ('descricao', )
 
 class StatusMovimentacao(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=30, unique=True, null=False)
 
     class Meta:
@@ -77,6 +85,7 @@ class StatusMovimentacao(models.Model):
         ordering = ('descricao', )
 
 class PrioridadeMovimentacao(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=30, unique=True, null=False)
 
     class Meta:
@@ -84,6 +93,7 @@ class PrioridadeMovimentacao(models.Model):
         ordering = ('descricao', )
 
 class TipoConta(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -91,6 +101,7 @@ class TipoConta(models.Model):
         ordering = ('descricao', )
 
 class InstituicaoFinanceira(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=100, unique=True, null=False)
     codigo = models.CharField(max_length=10, null=True)
     nome_completo = models.CharField(max_length=300, unique=True, null=False)
@@ -101,6 +112,7 @@ class InstituicaoFinanceira(models.Model):
         ordering = ('descricao', )
 
 class UF(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=100, null=False)
     sigla = models.CharField(max_length=10, null=False)
 
@@ -108,6 +120,7 @@ class UF(models.Model):
         db_table = 'uf'
 
 class Endereco(models.Model):
+    id = models.AutoField(primary_key=True)
     logradouro = models.CharField(max_length=200, null=True, blank=True)
     numero = models.CharField(max_length=15, null=True, blank=True)
     bairro = models.CharField(max_length=100, null=True, blank=True)
@@ -126,6 +139,7 @@ class Endereco(models.Model):
         db_table = 'endereco'
 
 class Conta(models.Model):
+    id = models.AutoField(primary_key=True)
     codigo_conta = models.CharField(max_length=20, null=True)
     digito_conta = models.CharField(max_length=1, null=True)
     codigo_agencia = models.CharField(max_length=10, null=True)
@@ -144,6 +158,7 @@ class Conta(models.Model):
         ordering = ('data_cadastro', )
 
 class TipoCartao(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -151,6 +166,7 @@ class TipoCartao(models.Model):
         ordering = ('descricao', )
 
 class Bandeira(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -158,6 +174,7 @@ class Bandeira(models.Model):
         ordering = ('descricao', )
 
 class Cartao(models.Model):
+    id = models.AutoField(primary_key=True)
     valor_limite = models.FloatField(null=True, blank=False)
     status_ativo = models.BooleanField(default=True, null=False, blank=True)
     dia_vencimento = models.IntegerField(null=True, blank=False)
@@ -173,6 +190,7 @@ class Cartao(models.Model):
         ordering = ('data_cadastro', )
 
 class Categoria(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=50, unique=True, null=False)
 
     class Meta:
@@ -180,6 +198,7 @@ class Categoria(models.Model):
         ordering = ('descricao', )
 
 class Movimentacao(models.Model):
+    id = models.AutoField(primary_key=True)
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
     descricao = models.CharField(max_length=300, null=False)
     data_realizacao = models.DateField(blank=True, null=True)
@@ -214,6 +233,7 @@ class Movimentacao(models.Model):
         ordering = ('data_atualizacao', )
 
 class Comentario(models.Model):
+    id = models.AutoField(primary_key=True)
     texto = models.CharField(max_length=500, null=False)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
@@ -228,6 +248,7 @@ class Comentario(models.Model):
         ordering = ('data_cadastro', )
 
 class MetaFinanceira(models.Model):
+    id = models.AutoField(primary_key=True)
     models.CharField(max_length=500, null=False)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
@@ -241,6 +262,7 @@ class MetaFinanceira(models.Model):
         ordering = ('data_cadastro', )
 
 class Orcamento(models.Model):
+    id = models.AutoField(primary_key=True)
     models.CharField(max_length=500, null=False)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
@@ -254,6 +276,7 @@ class Orcamento(models.Model):
         ordering = ('data_cadastro', )
 
 class Pagamento(models.Model):
+    id = models.AutoField(primary_key=True)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
     conta_origem = models.ForeignKey(Conta, on_delete=models.PROTECT, related_name='conta_origem_pagamento', blank=True, null=True)

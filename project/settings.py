@@ -18,7 +18,6 @@ class BaseConfig(Configuration):
         'api',
         'rest_framework',
         'simple_history',
-        'graphene_django',
     ]
 
     MIDDLEWARE = [
