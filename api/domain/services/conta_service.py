@@ -27,3 +27,9 @@ class ContaService:
         conta = self.conta_repository.atualiza_conta(conta_id, conta)
 
         return conta
+
+    def calcula_saldo(self):
+        pass
+    
+    def atualiza_saldo(self):
+        pass
