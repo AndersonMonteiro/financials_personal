@@ -36,3 +36,9 @@ class CartaoRepository:
         cartao = Cartao.objects.filter(pk=cartao_id).first()
 
         return cartao
+
+    def calcula_limite_disponivel(self):
+        pass
+
+    def atualiza_limite_disponivel(self):
+        pass    
