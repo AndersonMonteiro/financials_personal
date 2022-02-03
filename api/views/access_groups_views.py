@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from django_filters import rest_framework as drf_filters
 from rest_framework import filters
 
-class GrupoAcessoCreateList(APIView):
+class AccessGroupCreateList(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend, filters.SearchFilter,)
     filterset_class = GrupoAcessoFilter
     search_fields = ['']
@@ -42,7 +42,7 @@ class GrupoAcessoCreateList(APIView):
 
         return Response(grupo_acesso, status=status.HTTP_201_CREATED)
 
-class GrupoAcessoUpdate(APIView):
+class AccessGroupUpdate(APIView):
     
     def __init__(self):
         self.grupo_acesso_service = GrupoAcessoService()

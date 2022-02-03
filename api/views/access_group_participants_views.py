@@ -6,7 +6,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 
 
-class ParticipanteGrupoAcessoCreateList(APIView):
+class AccessGroupParticipantViewsCreateList(APIView):
     def __init__(self):
         self.participante_grupo_acesso_service = ParticipanteGrupoAcessoService()
 
@@ -26,11 +26,11 @@ class ParticipanteGrupoAcessoCreateList(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        participante_grupo_acesso = self.participante_grupo_acesso_service.cria_participante_grupo_acesso(request.data)
+        access_group_participants = self.participante_grupo_acesso_service.cria_participante_grupo_acesso(request.data)
 
-        return Response(grupo_acesso, status=status.HTTP_201_CREATED)
+        return Response(access_group_participants, status=status.HTTP_201_CREATED)
 
-class ParticipanteGrupoAcessoUpdate(APIView):
+class AccessGroupParticipantViewsUpdate(APIView):
     
     def __init__(self):
         self.participante_grupo_acesso_service = ParticipanteGrupoAcessoService()
