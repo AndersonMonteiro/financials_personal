@@ -1,13 +1,13 @@
-from api.serializers.serializers import MetaFinanceiraSerializer
-from api.domain.services.meta_financeira_service import MetaFinanceiraService
+from api.serializers.serializers import OrcamentoSerializer
+from api.domain.services.orcamento_service import OrcamentoService
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 
-class MetaFinanceiraCreateListView(APIView):
+class BudgetCreateListView(APIView):
     def __init__(self):
-        self.meta_financeira_service = MetaFinanceiraService()
+        self.orcamento_service_service = OrcamentoService()
 
     def post(self, request):
         pass
@@ -16,9 +16,9 @@ class MetaFinanceiraCreateListView(APIView):
         pass
 
 
-class MetaFinanceiraUpdateView(APIView):
+class BudgetUpdateView(APIView):
     def __init__(self):
-        self.meta_financeira_service = MetaFinanceiraService()
+        self.orcamento_service_service = OrcamentoService()
     
     def patch(self, request, pk):
         pass

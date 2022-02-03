@@ -1,6 +1,6 @@
-from api.serializers.serializers import PerfilSerializer
-from api.domain.services.perfil_service import PerfilService
-from api.filters.filters import PerfilFilter
+from api.serializers.serializers import EnderecoSerializer
+from api.domain.services.endereco_service import EnderecoService
+from api.filters.filters import EnderecoFilter
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
@@ -8,20 +8,20 @@ from rest_framework.views import APIView
 from django_filters import rest_framework as drf_filters
 
 
-class PerfilCreateListView(APIView):
+class AddressCreateListView(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend,)
-    filterset_class = PerfilFilter
+    filterset_class = EnderecoFilter
 
     def __init__(self):
-        self.perfil_service = PerfilService()
+        self.endereco_service = EnderecoService()
 
     def post(self, request):
-        serializer = PerfilSerializer(data=request.data)
+        serializer = EnderecoSerializer(data=request.data)
 
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serialized = self.perfil_service.cria_perfil(request.data)
+        serialized = self.endereco_service.cria_endereco(request.data)
 
         return Response(serialized, status=status.HTTP_201_CREATED)
 
@@ -31,11 +31,11 @@ class PerfilCreateListView(APIView):
         return queryset
 
     def get(self, request):
-        queryset = self.perfil_service.consulta_perfil_todos()
+        queryset = self.endereco_service.consulta_endereco_todos()
         queryset_filtered = self.filter_queryset(queryset)
         paginator = PageNumberPagination()
         page = paginator.paginate_queryset(queryset_filtered, request)
-        serializer = PerfilSerializer(page, many=True)
+        serializer = EnderecoSerializer(page, many=True)
 
         if page is not None:
             return paginator.get_paginated_response(serializer.data)
@@ -43,26 +43,28 @@ class PerfilCreateListView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class PerfilRetrieveUpdateView(APIView):
+class AddressRetrievelUpdateView(APIView):
+
     def __init__(self):
-        self.perfil_service = PerfilService()
+        self.endereco_service = EnderecoService()
 
     def patch(self, request, pk):
-        serializer = PerfilSerializer(data=request.data, partial=True)
+        serializer = EnderecoSerializer(data=request.data, partial=True)
 
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serialized = self.perfil_service.atualiza_perfil(pk, serializer.data)
+        endereco_serialized = self.endereco_service.atualiza_endereco(
+            pk, serializer.data)
 
-        return Response(serialized, status=status.HTTP_201_CREATED)
+        return Response(endereco_serialized, status=status.HTTP_201_CREATED)
 
     def get(self, request, pk):
-        perfil = self.perfil_service.consulta_perfil_por_id(pk)
+        endereco = self.endereco_service.consulta_endereco_por_id(pk)
 
-        if perfil is None:
-            return Response('error: perfil não encontrado.', status=status.HTTP_404_NOT_FOUND)
+        if endereco is None:
+            return Response('error: endereco não encontrado.', status=status.HTTP_404_NOT_FOUND)
 
-        serializer = PerfilSerializer(perfil)
+        serializer = EnderecoSerializer(endereco)
 
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -9,7 +9,7 @@ from django_filters import rest_framework as drf_filters
 from rest_framework import filters
 
 
-class ComentarioCreateList(APIView):
+class CommentCreateList(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend, filters.SearchFilter,)
     filterset_class = ComentarioFilter
     search_fields = ['']
@@ -44,7 +44,7 @@ class ComentarioCreateList(APIView):
         return Response(comentario, status=status.HTTP_201_CREATED)
 
 
-class ComentarioUpdateRetrieve(APIView):
+class CommentUpdateRetrieve(APIView):
 
     def __init__(self):
         self.comentario_service = ComentarioService()

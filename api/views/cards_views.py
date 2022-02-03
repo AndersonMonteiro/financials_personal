@@ -9,7 +9,7 @@ from django_filters import rest_framework as drf_filters
 from rest_framework import filters
 
 
-class CartaoCreateList(APIView):
+class CardCreateList(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend, filters.SearchFilter,)
     filterset_class = CartaoFilter
     search_fields = ['']
@@ -44,7 +44,7 @@ class CartaoCreateList(APIView):
         return Response(cartao, status=status.HTTP_201_CREATED)
 
 
-class CartaoUpdateRetrieve(APIView):
+class CardUpdateRetrieve(APIView):
 
     def __init__(self):
         self.cartao_service = CartaoService()

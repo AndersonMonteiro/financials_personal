@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from django_filters import rest_framework as drf_filters
 from rest_framework import filters
 
-class MovimentacaoSheetList(APIView):
+class MovementSheetList(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend, filters.SearchFilter,)
     filterset_class = MovimentacaoFilter
     search_fields = ['descricao']
@@ -33,7 +33,7 @@ class MovimentacaoSheetList(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class MovimentacaoCreateList(APIView):
+class MovementCreateList(APIView):
     filter_backends = (drf_filters.DjangoFilterBackend, filters.SearchFilter,)
     filterset_class = MovimentacaoFilter
     search_fields = ['descricao']
@@ -69,7 +69,7 @@ class MovimentacaoCreateList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class MovimentacaoUpdateRetrieve(APIView):
+class MovementUpdateRetrieve(APIView):
 
     def __init__(self):
         self.movimentacao_service = MovimentacaoService()
@@ -97,7 +97,7 @@ class MovimentacaoUpdateRetrieve(APIView):
         return Response(movimentacao_serialized, status=status.HTTP_201_CREATED)
 
 
-class SyncMovimentacaoSheet(APIView):
+class MovementSyncSheet(APIView):
 
     def post(self, request):
         MovimentacaoService().sincroniza_movimentacao_sheet()

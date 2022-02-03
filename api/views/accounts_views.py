@@ -9,7 +9,7 @@ from django_filters import rest_framework as drf_filters
 from rest_framework import filters
 
 
-class ContaCreateList(APIView):
+class AccountCreateList(APIView):
 
     conta_service = ContaService()
     queryset = conta_service.consulta_contas()
@@ -49,7 +49,7 @@ class ContaCreateList(APIView):
         return Response(conta, status=status.HTTP_201_CREATED)
 
 
-class ContaUpdateRetrieve(APIView):
+class AccountUpdateRetrieve(APIView):
 
     def __init__(self):
         self.conta_service = ContaService()
