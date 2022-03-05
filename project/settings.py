@@ -91,7 +91,7 @@ class Dev(BaseConfig):
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'OPTIONS': {
-                'options': '-c search_path=app_financas'
+                'options': '-c search_path=app_finance'
             },
             'NAME': os.environ['DEV_DB_FIN_NAME'],
             'USER': os.environ['DEV_DB_FIN_USER'],

@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 
 
 class Perfil(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     nome = models.CharField(max_length=50, null=False, blank=True)
     sobrenome = models.CharField(max_length=50, null=False, blank=True)
     data_nascimento = models.DateField(null=False, blank=True)
@@ -141,7 +140,6 @@ class Endereco(models.Model):
         db_table = 'endereco'
 
 class Conta(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     codigo_conta = models.CharField(max_length=20, null=True)
     digito_conta = models.CharField(max_length=1, null=True)
     codigo_agencia = models.CharField(max_length=10, null=True)
@@ -177,7 +175,6 @@ class Bandeira(models.Model):
         ordering = ('descricao', )
 
 class Cartao(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     valor_limite_total = models.FloatField(null=True, blank=False)
     valor_limite_disponivel = models.FloatField(null=True, blank=False)
     status_ativo = models.BooleanField(default=True, null=False, blank=True)
@@ -203,7 +200,6 @@ class Categoria(models.Model):
         ordering = ('descricao', )
 
 class Movimentacao(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
     descricao = models.CharField(max_length=300, null=False)
     data_realizacao = models.DateField(blank=True, null=True)
     data_vencimento = models.DateField(blank=True, null=True)
@@ -280,7 +276,6 @@ class Orcamento(models.Model):
         ordering = ('data_cadastro', )
 
 class Pagamento(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
     conta_origem = models.ForeignKey(Conta, on_delete=models.PROTECT, related_name='conta_origem_pagamento', blank=True, null=True)
