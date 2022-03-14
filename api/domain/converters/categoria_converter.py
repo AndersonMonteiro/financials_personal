@@ -4,26 +4,27 @@ from api.domain.enums.categoria_enum import CategoriaEnum
 class CategoriaSwitch:
 
     def convert_from_sheet(self, var):
+        var_normalized = str(var).lower()
         return {
-            'Alimentação': int(CategoriaEnum.ALIMENTACAO),
-            'Educação': int(CategoriaEnum.EDUCACAO),
-            'Lazer': int(CategoriaEnum.LAZER),
-            'Transporte': int(CategoriaEnum.TRANSPORTE),
-            'Moradia': int(CategoriaEnum.MORADIA),
-            'Pets': int(CategoriaEnum.PETS),
-            'Saúde': int(CategoriaEnum.SAUDE),
-            'Serviços Digitais': int(CategoriaEnum.SERVICOS_DIGITAIS),
-            'Investimento': int(CategoriaEnum.INVESTIMENTOS),
-            'Impostos': int(CategoriaEnum.IMPOSTOS),
-            'Roupas': int(CategoriaEnum.ROUPAS),
-            'Salário': int(CategoriaEnum.SALARIO),
-            'Bens de consumo': int(CategoriaEnum.BENS_CONSUMO),
-            'Serviços financeiros': int(CategoriaEnum.SERVICO_FINANCEIRO),
-            'Outros': int(CategoriaEnum.OUTROS),
-            'Beleza': int(CategoriaEnum.BELEZA),
-            'Comunicação': int(CategoriaEnum.COMUNICACAO),
-            'Presente': int(CategoriaEnum.PRESENTE),
-            'Doação': int(CategoriaEnum.DOACAO),
-            'Lanches e refeições': int(CategoriaEnum.LANCHES_REFEICAO),
-            'Utilitários': int(CategoriaEnum.BENS_CONSUMO)
-        }.get(var, False)
+            'alimentação': int(CategoriaEnum.ALIMENTACAO),
+            'educação': int(CategoriaEnum.EDUCACAO),
+            'lazer': int(CategoriaEnum.LAZER),
+            'transporte': int(CategoriaEnum.TRANSPORTE),
+            'moradia': int(CategoriaEnum.MORADIA),
+            'pets': int(CategoriaEnum.PETS),
+            'saúde': int(CategoriaEnum.SAUDE),
+            'serviços digitais': int(CategoriaEnum.SERVICOS_DIGITAIS),
+            'investimento': int(CategoriaEnum.INVESTIMENTOS),
+            'impostos': int(CategoriaEnum.IMPOSTOS),
+            'roupas': int(CategoriaEnum.ROUPAS),
+            'salário': int(CategoriaEnum.SALARIO),
+            'bens de consumo': int(CategoriaEnum.BENS_CONSUMO),
+            'serviços financeiros': int(CategoriaEnum.SERVICO_FINANCEIRO),
+            'outros': int(CategoriaEnum.OUTROS),
+            'beleza': int(CategoriaEnum.BELEZA),
+            'comunicação': int(CategoriaEnum.COMUNICACAO),
+            'presente': int(CategoriaEnum.PRESENTE),
+            'doação': int(CategoriaEnum.DOACAO),
+            'lanches e refeições': int(CategoriaEnum.LANCHES_REFEICAO),
+            'utilitários': int(CategoriaEnum.BENS_CONSUMO)
+        }.get(var_normalized, False)

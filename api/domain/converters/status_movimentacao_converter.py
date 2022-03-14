@@ -6,8 +6,8 @@ class StatusMovimentacaoSwitch:
     def convert_from_sheet(self, var):
         return {
             'Aguardando': int(StatusMovimentacaoEnum.AGUARDANDO),
-            'Pago': int(StatusMovimentacaoEnum.EFETIVADA),
+            'Pago': int(StatusMovimentacaoEnum.PAGO),
             'Pendente': int(StatusMovimentacaoEnum.PENDENTE),
             'Cancelado': int(StatusMovimentacaoEnum.CANCELADO),
-            'Parcialmente efetivada': int(StatusMovimentacaoEnum.PARCIALMENTE_EFETIVADA)
+            'Parcialmente efetivada': int(StatusMovimentacaoEnum.PARCIALMENTE_PAGO)
         }.get(var, False)

@@ -2,7 +2,7 @@ from api.models.models import (
     Moeda, TipoMovimentacao, FormaPagamento, StatusMovimentacao, Categoria,
     TipoConta, InstituicaoFinanceira, Bandeira, PrioridadeMovimentacao, Conta, Endereco,
     Movimentacao, Perfil, Comentario, Cartao, MetaFinanceira, Orcamento, GrupoAcesso,
-    TipoGrupoAcesso, ParticipanteGrupoAcesso
+    TipoGrupoAcesso, ParticipanteGrupoAcesso, Fatura
 )
 from rest_framework import serializers
 
@@ -137,4 +137,10 @@ class ParticipanteGrupoAcessoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ParticipanteGrupoAcesso
+        fields = ('__all__')
+
+class FaturaSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Fatura
         fields = ('__all__')

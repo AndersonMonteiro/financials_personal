@@ -13,7 +13,7 @@ class MovimentacaoRepository:
             serializer.save()
 
         return serializer.data
-    
+
     def cria_movimentacao_bulk(self, movimentacoes):
         batch_size = 1000
 

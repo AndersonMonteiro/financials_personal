@@ -1,6 +1,6 @@
 from api.models.models import (
     Conta, Endereco, Movimentacao, Perfil, Cartao, Comentario,
-    GrupoAcesso
+    GrupoAcesso, Fatura
 )
 from django_filters import rest_framework as filtersdrf
 import django_filters
@@ -82,4 +82,10 @@ class GrupoAcessoFilter(django_filters.FilterSet):
 
     class Meta:
         model = GrupoAcesso
+        fields = []
+
+class FaturaFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Fatura
         fields = []
