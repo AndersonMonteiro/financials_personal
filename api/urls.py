@@ -1,7 +1,8 @@
 from django.urls import path
 from api.views import (
     access_group_participants_views, access_groups_views, accounts_views, address_views,
-    auxiliar_views, budgets_views, cards_views, comments_views, goals_views, movements_views, profiles_views
+    auxiliar_views, budgets_views, cards_views, comments_views, goals_views, movements_views, profiles_views,
+    invoice_views
 )
 
 urlpatterns = [
@@ -37,4 +38,6 @@ urlpatterns = [
     path('access-group/<int:pk>', access_groups_views.AccessGroupUpdate.as_view()),
     path('access-group-participant', access_group_participants_views.AccessGroupParticipantViewsCreateList.as_view()),
     path('access-group-participant/<int:pk>', access_group_participants_views.AccessGroupParticipantViewsUpdate.as_view()),
+    path('invoices', invoice_views.InvoiceCreateList.as_view()),
+    path('invoices/<int:pk>', invoice_views.InvoiceUpdateRetrieve.as_view()),
 ]

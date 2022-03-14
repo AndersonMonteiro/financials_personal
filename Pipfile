@@ -32,6 +32,9 @@ gspread = "*"
 oauth2client = "*"
 gunicorn = "*"
 django = "==3.2"
+django-admin-rangefilter = "*"
+install = "*"
+django-admin-list-filter-dropdown = "*"
 
 [requires]
 python_version = "3.9"

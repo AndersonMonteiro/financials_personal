@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 
 class Perfil(models.Model):
+    id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=50, null=False, blank=True)
     sobrenome = models.CharField(max_length=50, null=False, blank=True)
     data_nascimento = models.DateField(null=False, blank=True)
@@ -140,6 +141,7 @@ class Endereco(models.Model):
         db_table = 'endereco'
 
 class Conta(models.Model):
+    id = models.AutoField(primary_key=True)
     codigo_conta = models.CharField(max_length=20, null=True)
     digito_conta = models.CharField(max_length=1, null=True)
     codigo_agencia = models.CharField(max_length=10, null=True)
@@ -175,6 +177,7 @@ class Bandeira(models.Model):
         ordering = ('descricao', )
 
 class Cartao(models.Model):
+    id = models.AutoField(primary_key=True)
     valor_limite_total = models.FloatField(null=True, blank=False)
     valor_limite_disponivel = models.FloatField(null=True, blank=False)
     status_ativo = models.BooleanField(default=True, null=False, blank=True)
@@ -200,6 +203,7 @@ class Categoria(models.Model):
         ordering = ('descricao', )
 
 class Movimentacao(models.Model):
+    id = models.AutoField(primary_key=True)
     descricao = models.CharField(max_length=300, null=False)
     data_realizacao = models.DateField(blank=True, null=True)
     data_vencimento = models.DateField(blank=True, null=True)
@@ -226,6 +230,7 @@ class Movimentacao(models.Model):
     moeda = models.ForeignKey(Moeda, on_delete=models.PROTECT)
     history = HistoricalRecords(custom_model_name='historical_movimentacao')
     grupo_acesso = models.ForeignKey(GrupoAcesso, on_delete=models.PROTECT, null=True, blank=False)
+    centro_custo = models.ForeignKey('CostCenter', on_delete=models.PROTECT, null=True, blank=False)
     movimentacao_sheet_id = models.UUIDField(null=True)
 
     class Meta:
@@ -276,6 +281,7 @@ class Orcamento(models.Model):
         ordering = ('data_cadastro', )
 
 class Pagamento(models.Model):
+    id = models.AutoField(primary_key=True)
     data_cadastro = models.DateTimeField(blank=False, null=True)
     data_atualizacao = models.DateTimeField(blank=False, null=True)
     conta_origem = models.ForeignKey(Conta, on_delete=models.PROTECT, related_name='conta_origem_pagamento', blank=True, null=True)
@@ -288,3 +294,27 @@ class Pagamento(models.Model):
     class Meta:
         db_table = 'pagamento'
         ordering = ('data_cadastro', )
+
+class CostCenter(models.Model):
+    id = models.AutoField(primary_key=True)
+    descricao = models.CharField(max_length=50, unique=True, null=False)
+
+    class Meta:
+        db_table = 'centro_custo'
+        ordering = ('descricao', )
+
+class Fatura(models.Model):
+    id = models.AutoField(primary_key=True)
+    descricao = models.CharField(max_length=300, null=False)
+    data_vencimento = models.DateField(blank=True, null=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True, blank=True, null=False)
+    data_atualizacao = models.DateTimeField(auto_now=True, blank=True, null=True)
+    conta = models.ForeignKey(Conta, on_delete=models.PROTECT, related_name='conta_fatura', blank=True, null=True)
+    cartao = models.ForeignKey(Cartao, on_delete=models.PROTECT, related_name='cartao_fatura', blank=True, null=True)
+    status = models.ForeignKey(StatusMovimentacao, on_delete=models.PROTECT, blank=True)
+    valor_total = models.FloatField(null=True)
+    valor_pago = models.FloatField(null=True)
+
+    class Meta:
+        db_table = 'fatura'
+        ordering = ('descricao', )

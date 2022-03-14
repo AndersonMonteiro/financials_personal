@@ -18,6 +18,8 @@ class BaseConfig(Configuration):
         'api',
         'rest_framework',
         'simple_history',
+        'rangefilter',
+        'django_admin_listfilter_dropdown',
     ]
 
     MIDDLEWARE = [
